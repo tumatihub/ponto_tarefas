@@ -1,0 +1,14 @@
+div.tarefa input, input#adiciona {
+	width: 500px;
+	border: 0;
+	padding: 5px;
+	font-size: 16px;
+	background-color: #CCDAEF;
+	margin: 3px 0;
+	color: #444;
+    font-family: monospace;
+}
+
+div.ativada input {
+	background-color: #EFCFCC;
+}
