@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	carregaTarefas();
 	$("#adiciona").change(adicionaNovaTarefa);
+	$('#relatorio-button').click(geraRelatorio);
 
 });
 
@@ -42,19 +43,18 @@ function carregaTarefas(){
 	$.post("interfaceGerenciador.php", {
     	acao: "pegaTodasAsTarefas"
     }, function(data, status){
-    	console.log(data);
     	data.forEach(function(item){
     		insereElementoTarefa(
     			item['id'],
     			criaNovoElementoTarefa(
-    				item['id'], 
-    				item['nome'], 
+    				item['id'],
+    				item['nome'],
     				item['estado'],
     				tempoEmAtividadeString(item['tempoEmAtividade'])
     			)
     		);
     	});
-    }, "json");	
+    }, "json");
 }
 
 function adicionaNovaTarefa(){
@@ -67,7 +67,7 @@ function adicionaNovaTarefa(){
     }, function(data, status){
     	insereElementoTarefa(data['id'], criaNovoElementoTarefa(data['id'], nomeTarefa, 'desativada', '0:0:0h'));
     	salvaGerenciador();
-    }, "json");			
+    }, "json");
 }
 
 function removeTarefa(event){
@@ -79,7 +79,7 @@ function removeTarefa(event){
     }, function(data, status){
     	$("div#"+id).remove();
     	salvaGerenciador();
-    });	
+    });
 }
 
 function mudaNomeTarefa() {
@@ -92,7 +92,7 @@ function mudaNomeTarefa() {
     }, function(data, status){
     	$('#adiciona').focus();
     	salvaGerenciador();
-    });	
+    });
 }
 
 function desativaTarefa(id) {
@@ -148,4 +148,20 @@ function salvaGerenciador() {
     }, function(data, status) {
     	console.log(data);
     });
+}
+
+function insereElementoRelatorio(titulo, tempo) {
+	element = "<spam>- "+titulo+"</spam> - <spam>"+tempo+" h</spam><br/>";
+	$('section.relatorio').append(element);
+}
+
+function geraRelatorio(event) {
+	event.preventDefault();
+	$.post("interfaceGerenciador.php", {
+    	acao: "geraRelatorio"
+    }, function(data, status){
+			data.forEach(function(item){
+				insereElementoRelatorio(item['titulo'], item['tempo']);
+			});
+    }, "json");
 }

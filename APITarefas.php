@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once 'GerenciadorDeTarefas.php';
 
 class APITarefas {
@@ -42,6 +42,11 @@ class APITarefas {
 
 	public function salvaGerenciador() {
 		return $this->gerenciador->salvaGerenciador();
+	}
+
+	public function geraRelatorio() {
+		$listaRelatorio = $this->gerenciador->geraRelatorio();
+		return json_encode($listaRelatorio);
 	}
 }
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<?php 
+<?php
 
 session_start();
 
@@ -18,6 +18,12 @@ if (!isset($_SESSION['usuario'])) {
 
 <input id="adiciona" type="text" placeholder="Nome da tarefa">
 <a href="logout.php">Logout</a>
+<a id="relatorio-button" href="#">Relatorio</a>
+
+<section class="relatorio">
+
+</section>
+
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/main.js"></script>
 </body>

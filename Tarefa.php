@@ -1,6 +1,6 @@
-<?php 
+<?php
 	class Tarefa {
-		
+
 		private $id;
 		private $nomeTarefa;
 		private $dataCriacao;
@@ -86,6 +86,13 @@
 				}
 			}
 			return $string;
+		}
+
+		public function getTempoFloat(){
+			$arrayDiff = $this->arrayTempoEmAtividade();
+			$horas = $arrayDiff['h'];
+			$minutos = $arrayDiff['i']/60;
+			return $horas + $minutos;
 		}
 	}
  ?>

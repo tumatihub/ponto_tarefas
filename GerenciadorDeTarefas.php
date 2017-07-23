@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once 'Tarefa.php';
 	require_once 'EstadoDeTarefa.php';
 	require_once 'TarefaAtivada.php';
@@ -9,7 +9,7 @@
 		private $listaDeTarefas;
 
 		public function __construct() {
-			$this->listaDeTarefas = array();	
+			$this->listaDeTarefas = array();
 		}
 
 		public function retornaIndiceUsandoId($id) {
@@ -95,16 +95,29 @@
 			$gerenciadorSerializado = serialize($this);
 			$caminhoArquivo = getcwd() . '/salvo/salvo.txt';
 			if (is_writable($caminhoArquivo)) {
-			    $fp = fopen($caminhoArquivo, "w"); 
-			    fwrite($fp, $gerenciadorSerializado); 
+			    $fp = fopen($caminhoArquivo, "w");
+			    fwrite($fp, $gerenciadorSerializado);
 			    fclose($fp);
 			} else if (!file_exists($caminhoArquivo)) {
 				$fp = fopen($caminhoArquivo, "w");
-				fwrite($fp, $gerenciadorSerializado); 
+				fwrite($fp, $gerenciadorSerializado);
 				fclose($fp);
 			} else {
 				return 'Nao escreveu em ' . $caminhoArquivo;
 			}
+		}
+
+		public function geraRelatorio() {
+			$lista = array();
+			foreach ($this->listaDeTarefas as $tarefa) {
+				$tempo = $tarefa->getTempoFloat();
+				$tempo = round($tempo/5, 2)*5;
+				array_push($lista, array(
+					'titulo' => $tarefa->getNome(),
+					'tempo' => $tempo
+				));
+			}
+			return $lista;
 		}
 	}
 

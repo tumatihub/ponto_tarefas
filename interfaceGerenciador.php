@@ -17,7 +17,7 @@
 	}
 
 	$api = new APITarefas($gerenciador);
-	
+
 	switch ($acao) {
 	    case "adicionaTarefa":
 	        echo $api->adicionaTarefa($_POST['nome']);
@@ -39,6 +39,9 @@
 	        break;
 	    case 'salvaGerenciador':
 	        echo $api->salvaGerenciador();
-	        break;	        
+	        break;
+			case 'geraRelatorio':
+	        echo $api->geraRelatorio();
+	        break;
 	}
  ?>
