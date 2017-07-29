@@ -23,19 +23,21 @@ function tempoEmAtividadeString(tmp) {
 }
 
 function criaNovoElementoTarefa(id, nome, estado, tempoEmAtividadeString){
-	ativarOuDesativar = estado == 'ativada' ? 'Desativar' : 'Ativar';
+	ativarOuDesativar = estado == 'ativada' ? 'fa-stop' : 'fa-play';
 	return `
 		<div id="${id}" class="tarefa ${estado}">
 			<input type="text" value="${nome}">
 			<span id="tempoEmAtividade">${tempoEmAtividadeString}</span>
-			<a class="estado" href="#">${ativarOuDesativar}</a>
-			<a class="remover" href="#">Remover</a>
+			<div class="icons">
+				<i class="fa ${ativarOuDesativar} estado" aria-hidden="true"></i>
+				<i class="fa fa-trash remover" aria-hidden="true"></i>
+			</div>
 		</div>
 	`;
 }
 
 function insereElementoTarefa(id, elemento){
-	$(elemento).insertBefore("#adiciona");
+	$(elemento).insertBefore("#menu");
 	atualizaEventos(id);
 }
 
@@ -65,14 +67,14 @@ function adicionaNovaTarefa(){
     	acao: "adicionaTarefa",
     	nome: nomeTarefa
     }, function(data, status){
-    	insereElementoTarefa(data['id'], criaNovoElementoTarefa(data['id'], nomeTarefa, 'desativada', '0:0:0h'));
+    	insereElementoTarefa(data['id'], criaNovoElementoTarefa(data['id'], nomeTarefa, 'desativada', '00:00:00h'));
     	salvaGerenciador();
     }, "json");
 }
 
 function removeTarefa(event){
 	event.preventDefault();
-	id = $(this).parent().attr('id');
+	id = $(this).parent().parent().attr('id');
     $.post("interfaceGerenciador.php", {
     	acao: "removeTarefa",
     	id: id
@@ -103,7 +105,7 @@ function desativaTarefa(id) {
     	tarefaDiv = $('div#'+id);
     	tarefaDiv.removeClass('ativada');
     	tarefaDiv.addClass('desativada');
-    	tarefaDiv.find('.estado').text('Ativar');
+    	tarefaDiv.find('.estado').toggleClass('fa-play fa-stop');
     	tarefaDiv.find('#tempoEmAtividade').text(tempoEmAtividadeString(data['tempoEmAtividade']));
     	salvaGerenciador();
     }, "json");
@@ -125,18 +127,18 @@ function ativaTarefa(id) {
     	tarefaDiv = $('div#'+id);
     	tarefaDiv.removeClass('desativada');
     	tarefaDiv.addClass('ativada');
-    	tarefaDiv.find('.estado').text('Desativar');
+    	tarefaDiv.find('.estado').toggleClass('fa-play fa-stop');
     	salvaGerenciador();
     });
 }
 
 function mudaEstadoTarefa(event) {
 	event.preventDefault();
-	id = $(this).parent().attr('id');
+	id = $(this).parent().parent().attr('id');
 	console.log(id);
-	if ( $(this).parent().hasClass('ativada') ) {
+	if ( $(this).parent().parent().hasClass('ativada') ) {
 		desativaTarefa(id);
-	} else if ( $(this).parent().hasClass('desativada') ) {
+	} else if ( $(this).parent().parent().hasClass('desativada') ) {
 		ativaTarefa(id);
 	}
 }

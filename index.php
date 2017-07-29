@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>Ponto de Tarefas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -15,10 +17,13 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 ?>
-
-<input id="adiciona" type="text" placeholder="Nome da tarefa">
-<a href="logout.php">Logout</a>
-<a id="relatorio-button" href="#">Relatorio</a>
+<section class="tarefas-container">
+	<div id="menu">
+		<input id="adiciona" type="text" placeholder="Clique para inserir uma tarefa">
+		<a class="btn" href="logout.php">Logout</a>
+		<a id="relatorio-button" class="btn" href="#">Relatorio</a>
+	</div>
+</section>
 
 <section class="relatorio">
 

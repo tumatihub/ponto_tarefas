@@ -70,7 +70,7 @@
 			$partes = array('y', 'm', 'd', 'h', 'i', 's');
 			$arrayDiff = array();
 			foreach($partes as $parte) {
-				$arrayDiff[$parte] = $diff->$parte;
+				$arrayDiff[$parte] = sprintf("%'.02d", $diff->$parte);
 			}
 			return $arrayDiff;
 		}
@@ -82,7 +82,7 @@
 			foreach($partes as $parte){
 				if ( $parte == 's' || $diff->$parte > 0 ){
 					$unidade = array_search($parte, $unidades);
-					$string = $string . ' ' . $diff->$parte . "${unidade}";
+					$string = $string . ' ' . sprintf("%'.02d", $diff->$parte) . "${unidade}";
 				}
 			}
 			return $string;
