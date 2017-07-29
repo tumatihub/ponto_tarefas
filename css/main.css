@@ -44,7 +44,7 @@ input:focus {
   height: 4em;
   position: relative;
   width: 80%;
-	min-height: 110px;
+	min-height: 65px;
   box-sizing: border-box;
 }
 div.tarefa input, input#adiciona {
