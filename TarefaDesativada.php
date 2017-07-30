@@ -1,10 +1,10 @@
-<?php 
+<?php
 	require_once 'Tarefa.php';
 
 	class TarefaDesativada implements EstadoDeTarefa {
 
 		public function ativa(Tarefa $tarefa){
-			$tarefa->atualizaDataAtivada();
+			$tarefa->atualizaDataAtivada(new DateTime('NOW'));
 			$tarefa->setEstado(new TarefaAtivada);
 		}
 

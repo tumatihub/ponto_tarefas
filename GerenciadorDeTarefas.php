@@ -33,8 +33,8 @@
 			return $tarefaInfo;
 		}
 
-		public function adicionaTarefa($nome) {
-			$tarefa = new Tarefa($nome);
+		public function adicionaTarefa($nome, DateTime $data) {
+			$tarefa = new Tarefa($nome, $data);
 			$this->listaDeTarefas[] = $tarefa;
 			return $tarefa->getId();
 		}

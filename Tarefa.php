@@ -11,12 +11,12 @@
 		private $dataReferenciaFinal;
 		private $estado;
 
-		public function __construct($nome){
+		public function __construct($nome, DateTime $data){
 			$this->id = md5($nome . date('NOW') . rand());
 			$this->nomeTarefa = $nome;
-			$this->dataCriacao = new DateTime('NOW');
-			$this->dataReferenciaInicial = new DateTime('NOW');
-			$this->dataReferenciaFinal = new DateTime('NOW');
+			$this->dataCriacao = clone $data;
+			$this->dataReferenciaInicial = clone $data;
+			$this->dataReferenciaFinal = clone $data;
 			$this->estado = new TarefaDesativada;
 		}
 
@@ -44,12 +44,12 @@
 			return $this->estado->getEstadoString();
 		}
 
-		public function atualizaDataAtivada() {
-			$this->dataAtivada = new DateTime('NOW');
+		public function atualizaDataAtivada(DateTime $data) {
+			$this->dataAtivada = $data;
 		}
 
-		public function atualizaDataDesativada() {
-			$this->dataDesativada = new DateTime('NOW');
+		public function atualizaDataDesativada(DateTime $data) {
+			$this->dataDesativada = $data;
 			$this->dataReferenciaFinal->add($this->dataAtivada->diff($this->dataDesativada));
 		}
 

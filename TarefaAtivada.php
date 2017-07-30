@@ -1,4 +1,4 @@
-<?php 
+<?php
 	require_once 'Tarefa.php';
 
 	class TarefaAtivada implements EstadoDeTarefa {
@@ -8,7 +8,7 @@
 		}
 
 		public function desativa(Tarefa $tarefa){
-			$tarefa->atualizaDataDesativada();
+			$tarefa->atualizaDataDesativada(new DateTime('NOW'));
 			$tarefa->setEstado(new TarefaDesativada);
 		}
 

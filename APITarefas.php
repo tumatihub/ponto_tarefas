@@ -10,7 +10,7 @@ class APITarefas {
 	}
 
 	public function adicionaTarefa($nome) {
-		$id = $this->gerenciador->adicionaTarefa($nome);
+		$id = $this->gerenciador->adicionaTarefa($nome, new DateTime('NOW'));
 		return json_encode(array("id" => $id));
 	}
 
