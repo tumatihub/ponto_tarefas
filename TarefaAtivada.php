@@ -1,4 +1,5 @@
 <?php
+	require_once 'EstadoDeTarefa.php';
 	require_once 'Tarefa.php';
 
 	class TarefaAtivada implements EstadoDeTarefa {
