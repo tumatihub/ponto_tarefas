@@ -1,5 +1,6 @@
 body {
 	background-color: #20242A;
+	font-family: monospace;
 }
 a {
 	color: #3A5DA3;
@@ -95,6 +96,16 @@ div.ativada {
 	margin: auto;
 	line-height: 25px;
   padding: 2%;
+}
+
+/*Login*/
+
+.btn-login {
+	width: 80%;
+	max-width: 120px;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
 }
 
 @media only screen and (max-width: 500px) {
