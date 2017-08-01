@@ -4,7 +4,7 @@ $(document).ready(function(){
 	$('#relatorio-button').click(geraRelatorio);
 	setInterval(function(){
 		location.reload(true);
-	}, 10000);
+	}, 20000);
 });
 
 function atualizaEventos(id) {
