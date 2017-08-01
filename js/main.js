@@ -2,7 +2,9 @@ $(document).ready(function(){
 	carregaTarefas();
 	$("#adiciona").change(adicionaNovaTarefa);
 	$('#relatorio-button').click(geraRelatorio);
-
+	setInterval(function(){
+		location.reload(true);
+	}, 10000);
 });
 
 function atualizaEventos(id) {

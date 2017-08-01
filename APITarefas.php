@@ -9,6 +9,10 @@ class APITarefas {
 		$this->gerenciador = $gerenciador;
 	}
 
+	public function getGerenciador() {
+		return $this->gerenciador;
+	}
+
 	public function adicionaTarefa($nome) {
 		$id = $this->gerenciador->adicionaTarefa($nome, new DateTime('NOW'));
 		return json_encode(array("id" => $id));
@@ -18,6 +22,13 @@ class APITarefas {
 		$this->gerenciador->removeTarefa($id);
 	}
 
+	public function recarregaGerenciador() {
+		$caminhoArquivo = getcwd() . '/salvo/salvo.txt';
+		if (file_exists($caminhoArquivo)){
+		    $conteudoArquivo = file_get_contents($caminhoArquivo);
+		    $this->gerenciador = unserialize($conteudoArquivo);
+		}
+	}
 	public function pegaTodasAsTarefas() {
 		$listaDeTarefas = array();
 		$listaIds = $this->gerenciador->retornaTodosIds();

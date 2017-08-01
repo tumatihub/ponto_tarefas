@@ -23,6 +23,8 @@
 	        echo $api->adicionaTarefa($_POST['nome']);
 	        break;
 	    case 'pegaTodasAsTarefas':
+					$api->recarregaGerenciador();
+					$_SESSION['gerenciador'] = $api->getGerenciador();
 	        echo $api->pegaTodasAsTarefas();
 	        break;
 	    case 'removeTarefa':
