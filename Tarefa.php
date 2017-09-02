@@ -13,6 +13,7 @@ class Tarefa
     private $dataReferenciaInicial;
     private $dataReferenciaFinal;
     private $estado;
+    private $ultimaAtualizacao;
 
     public function __construct($nome, DateTime $data)
     {
@@ -54,6 +55,11 @@ class Tarefa
         return $this->estado;
     }
 
+    public function isAtiva()
+    {
+        return $this->estado->isAtiva();
+    }
+
     public function getEstadoString()
     {
         return $this->estado->getEstadoString();
@@ -62,12 +68,19 @@ class Tarefa
     public function atualizaDataAtivada(DateTime $data)
     {
         $this->dataAtivada = $data;
+        $this->ultimaAtualizacao = clone $data;
     }
 
     public function atualizaDataDesativada(DateTime $data)
     {
         $this->dataDesativada = $data;
-        $this->dataReferenciaFinal->add($this->dataAtivada->diff($this->dataDesativada));
+        $this->atualizaTempoTarefa($data);
+    }
+
+    public function atualizaTempoTarefa(DateTime $data)
+    {
+        $this->dataReferenciaFinal->add($this->ultimaAtualizacao->diff($data));
+        $this->ultimaAtualizacao = $data;
     }
 
     public function ativa()

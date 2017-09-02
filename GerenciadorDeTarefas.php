@@ -133,4 +133,21 @@
             }
             return $lista;
         }
+
+        public function pegaTarefaAtiva()
+        {
+            foreach ($this->listaDeTarefas as $tarefa) {
+                if ($tarefa->isAtiva()) {
+                    return $tarefa;
+                }
+            }
+        }
+
+        public function atualizaTarefaAtiva()
+        {
+            $tarefa = $this->pegaTarefaAtiva();
+            if ($tarefa) {
+                $tarefa->atualizaTempoTarefa(new DateTime('NOW'));
+            }
+        }
     }

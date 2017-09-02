@@ -18,4 +18,9 @@
         {
             return "ativada";
         }
+
+        public function isAtiva()
+        {
+            return true;
+        }
     }

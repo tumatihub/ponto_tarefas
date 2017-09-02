@@ -18,4 +18,9 @@
         {
             return "desativada";
         }
+
+        public function isAtiva()
+        {
+            return false;
+        }
     }

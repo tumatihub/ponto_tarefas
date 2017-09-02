@@ -70,4 +70,9 @@ class APITarefas
         $listaRelatorio = $this->gerenciador->geraRelatorio();
         return json_encode($listaRelatorio);
     }
+
+    public function atualizaTarefaAtiva()
+    {
+        $this->gerenciador->atualizaTarefaAtiva();
+    }
 }

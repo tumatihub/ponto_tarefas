@@ -25,6 +25,7 @@
         case 'pegaTodasAsTarefas':
             $api->recarregaGerenciador();
             $_SESSION['gerenciador'] = $api->getGerenciador();
+            $api->atualizaTarefaAtiva();
             echo $api->pegaTodasAsTarefas();
             break;
         case 'removeTarefa':
@@ -42,7 +43,7 @@
         case 'salvaGerenciador':
             echo $api->salvaGerenciador();
             break;
-            case 'geraRelatorio':
+        case 'geraRelatorio':
             echo $api->geraRelatorio();
             break;
     }

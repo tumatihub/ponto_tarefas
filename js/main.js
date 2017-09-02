@@ -144,7 +144,6 @@ function ativaTarefa(id) {
 function mudaEstadoTarefa(event) {
     event.preventDefault();
     id = $(this).parent().parent().attr('id');
-    console.log(id);
     if ($(this).parent().parent().hasClass('ativada')) {
         desativaTarefa(id);
     } else if ($(this).parent().parent().hasClass('desativada')) {
@@ -153,11 +152,9 @@ function mudaEstadoTarefa(event) {
 }
 
 function salvaGerenciador() {
-    console.log('salvando');
     $.post("interfaceGerenciador.php", {
         acao: "salvaGerenciador"
     }, function(data, status) {
-        console.log(data);
     });
 }
 
